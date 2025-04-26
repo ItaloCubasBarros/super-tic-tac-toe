@@ -1,69 +1,9 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f0f0f0;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  h1 {
-    margin: 20px;
-  }
-  .big-board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 600px;
-    height: 600px;
-    background: #333;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  .small-board {
-    background: #fff;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 3px;
-    position: relative;
-  }
-  .cell {
-    background: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    cursor: pointer;
-    height: 100%;
-    width: 100%;
-  }
-  .small-board.won::after {
-    content: attr(data-winner);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.8);
-    color: #333;
-    font-size: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  .highlight {
-    outline: 5px solid gold;
-  }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-
   body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f7f7;
@@ -73,8 +13,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    flex-direction: column;
   }
-
+  
   h1 {
     font-size: 2.5rem;
     text-align: center;
@@ -82,7 +23,7 @@ body {
     margin-bottom: 20px;
     font-weight: bold;
   }
-
+  
   ul {
     list-style-type: none;
     padding: 20px;
@@ -108,12 +49,12 @@ body {
     left: 0;
     top: 0;
   }
-
+  
   li strong {
     font-weight: bold;
-    color: #e64a19; 
+    color: #e64a19;
   }
-
+  
   li:hover {
     background-color: #f1f1f1;
     cursor: pointer;
@@ -121,7 +62,33 @@ body {
     transition: all 0.3s ease;
   }
   
-
+  a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #3b6f9a;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  a:hover {
+    background-color: #e64a19;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  a:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  
+  /* Layout para dispositivos com telas pequenas (celulares) */
   @media (max-width: 600px) {
     h1 {
       font-size: 2rem;
@@ -134,34 +101,320 @@ body {
     li {
       font-size: 1.1rem;
     }
+  
+    a {
+      font-size: 1rem;
+      padding: 8px 15px;
+    }
   }
   
-
-a {
+  /* Layout para dispositivos de tamanho médio (tablets e dispositivos com telas médias) */
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+  
+    ul {
+      width: 80%;
+    }
+  
+    li {
+      font-size: 1.15rem;
+    }
+  
+    a {
+      font-size: 1.1rem;
+      padding: 10px 18px;
+    }
+  }
+  
+  /* Layout para telas grandes (desktop) */
+  @media (min-width: 901px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+  
+    ul {
+      width: 600px;
+    }
+  
+    li {
+      font-size: 1.2rem;
+    }
+  
+    a {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Layout para a grid do jogo */
+  .big-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 600px;
+    height: 600px;
+    background: #333;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .small-board {
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    position: relative;
+  }
+  
+  .cell {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .small-board.won::after {
+    content: attr(data-winner);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .highlight {
+    outline: 5px solid gold;
+  }
+  
+  /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos gerais */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  /* Título principal */
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Estilo do link */
+  a {
     display: inline-block;
     text-decoration: none;
     font-size: 1.2rem;
     padding: 10px 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
-
     background-color: #3b6f9a;
     color: white;
-    border-radius: 8px; 
+    border-radius: 8px;
     transition: all 0.3s ease;
     font-weight: bold;
     text-align: center;
   }
   
-
   a:hover {
-    background-color: #e64a19; 
-    transform: translateY(-3px); 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    background-color: #e64a19;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
   
   a:active {
-    transform: translateY(1px); 
-    box-shadow: none; 
+    transform: translateY(1px);
+    box-shadow: none;
   }
   
+  /* Estilo da grid do jogo */
+  .big-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 80vw; /* Largura fluída */
+    height: 80vw; /* Altura fluída, mantendo a proporção do jogo */
+    max-width: 600px; /* Limite máximo de largura */
+    max-height: 600px; /* Limite máximo de altura */
+    background: #333;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .small-board {
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    position: relative;
+  }
+  
+  .cell {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; /* Tamanho fixo da fonte */
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    line-height: 1; /* Garante que o texto não afete o tamanho */
+    overflow: hidden; /* Impede que o conteúdo extra afete o layout */
+    text-align: center; /* Centraliza o texto */
+  }
+  
+  /* Estilo da mensagem de "Vencedor" */
+  .small-board.won::after {
+    content: attr(data-winner);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  /* Estilo para o texto de turno */
+  #playerTurn {
+    font-size: 1.5rem;
+    margin: 20px;
+  }
+  
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 600px) {
+    .big-board {
+      width: 95vw; /* Ocupa quase toda a largura da tela */
+      height: 95vw; /* Mantém a proporção quadrada */
+    }
+  
+    h1 {
+      font-size: 1.8rem; /* Reduz o tamanho do título */
+    }
+  
+    #playerTurn {
+      font-size: 1.2rem; /* Ajusta o tamanho do texto de turno */
+      text-align: center;
+    }
+  }
+  
+  /* Ajustes para telas médias (tablets) */
+  @media (max-width: 900px) {
+    .big-board {
+      width: 80vw; /* Reduz o tamanho do tabuleiro */
+      height: 80vw;
+    }
+  
+    h1 {
+      font-size: 2.2rem;
+    }
+  
+    #playerTurn {
+      font-size: 1.4rem;
+    }
+  }
+  
+  /* Ajustes gerais para telas grandes */
+  @media (min-width: 901px) {
+    .big-board {
+      width: 600px; /* Tamanho fixo para desktops */
+      height: 600px;
+    }
+  }
+
+  /* Responsividade para a página de tutorial */
+
+/* Para telas pequenas (celulares) */
+@media (max-width: 600px) {
+    h1 {
+      font-size: 1.8rem; /* Reduz o tamanho do título */
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  
+    ul {
+      padding: 15px;
+      font-size: 1rem; /* Reduz o tamanho do texto */
+      width: 90%; /* Ocupa quase toda a largura da tela */
+      margin: 0 auto; /* Centraliza a lista */
+    }
+  
+    li {
+      font-size: 0.9rem; /* Ajusta o tamanho dos itens da lista */
+      margin-bottom: 10px;
+    }
+  
+    a {
+      font-size: 1rem; /* Ajusta o tamanho do botão */
+      padding: 8px 15px; /* Reduz o espaçamento interno */
+      width: 90%; /* Ocupa quase toda a largura da tela */
+      text-align: center;
+      display: block; /* Faz o botão ocupar uma linha inteira */
+      margin: 15px auto; /* Centraliza o botão */
+    }
+  
+    span {
+      font-size: 0.8rem; /* Reduz o tamanho do texto do rodapé */
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+  }
+  
+  /* Para telas médias (tablets) */
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 2.2rem; /* Ajusta o tamanho do título */
+    }
+  
+    ul {
+      width: 80%; /* Reduz a largura da lista */
+      font-size: 1.1rem; /* Ajusta o tamanho do texto */
+    }
+  
+    li {
+      font-size: 1rem; /* Ajusta o tamanho dos itens da lista */
+    }
+  
+    a {
+      font-size: 1.1rem; /* Ajusta o tamanho do botão */
+      padding: 10px 20px;
+    }
+  
+    span {
+      font-size: 0.9rem; /* Ajusta o tamanho do texto do rodapé */
+    }
+  }
